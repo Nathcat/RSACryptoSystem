@@ -1,12 +1,13 @@
 package com.nathcat.RSA;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Arrays;
 
 /**
  * Represents a chunk of 64 bytes
  */
-public class ByteChunk {
+public class ByteChunk implements Serializable {
     private final byte[] lostBytes;  // The lost bytes in the conversion from byte array to integer
     public BigInteger integer;       // The big integer created from the original bytes array
     private final boolean flipSign;  // Will the integer sign need to be changed?
