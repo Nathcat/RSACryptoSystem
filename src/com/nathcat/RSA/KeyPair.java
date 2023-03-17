@@ -51,11 +51,14 @@ public class KeyPair implements Serializable {
             throw new PublicKeyException();
         }
 
+        // Split the input object into its byte chunks
         ByteChunk[] chunks = EncryptedObject.SplitObjectToByteChunks(obj);
+        // Encrypt each of the byte chunks
         for (int i = 0; i < chunks.length; i++) {
             chunks[i].integer = chunks[i].integer.modPow(this.pub.e, this.pub.n);
         }
 
+        // Return the encrypted byte chunks inside an instance of EncryptedObject
         return new EncryptedObject(chunks);
     }
 
@@ -70,11 +73,14 @@ public class KeyPair implements Serializable {
             throw new PrivateKeyException();
         }
 
+        // Get the encrypted byte chunks
         ByteChunk[] chunks = obj.byteChunks;
+        // Decrypt each of the byte chunks
         for (int i = 0; i < chunks.length; i++) {
             chunks[i].integer = chunks[i].integer.modPow(this.pri.d, this.pri.n);
         }
 
+        // Compile the byte chunks into an object and return the result
         return EncryptedObject.CompileByteChunks(chunks);
     }
 }

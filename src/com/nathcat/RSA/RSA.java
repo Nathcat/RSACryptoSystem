@@ -33,34 +33,4 @@ public class RSA {
                 new PrivateKey(n, d)
         );
     }
-
-    /**
-     * Convert a String into a BigInteger array for RSA processing
-     * @param message The String to be converted
-     * @return The resulting BigInteger array
-     */
-    public static BigInteger[] StringToBigIntegerArray(String message) {
-        BigInteger[] result = new BigInteger[message.length()];
-
-        for (int i = 0; i < message.length(); i++) {
-            result[i] = BigInteger.valueOf((int) message.charAt(i));
-        }
-
-        return result;
-    }
-
-    /**
-     * Convert a BigInteger array to a String
-     * @param message The BigInteger array to be converted
-     * @return The resulting String
-     */
-    public static String BigIntegerArrayToString(BigInteger[] message) {
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < message.length; i++) {
-            sb.append((char) message[i].intValueExact());
-        }
-
-        return sb.toString();
-    }
 }
